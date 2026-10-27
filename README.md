@@ -1,16 +1,25 @@
-# rest_api
+# Flutter-Movies-Rest-Api
 
-A new Flutter project.
+A Flutter app that pulls data from a public REST API and renders it — the standard first walk through HTTP, JSON and list rendering in Dart.
 
-## Getting Started
+## How it works
 
-This project is a starting point for a Flutter application.
+- `lib/services/api_fetch.dart` holds an `Api` class with a single `fetchApi()` method: it issues a `GET` to `https://www.episodate.com/api/most-popular?page=1` with the `http` package, returns the raw response body on a 200, and returns `0` on anything else
+- `lib/main.dart` calls it and renders the results
 
-A few resources to get you started if this is your first Flutter project:
+## Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Flutter · Dart · `http`
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Running
+
+```bash
+flutter pub get
+flutter run
+```
+
+Needs network access; the API is public and needs no key.
+
+## Notes
+
+The API call returns an unparsed string, so the screen works directly with the response body — decoding it into typed models is the natural next step. Network errors currently surface as a `0` rather than an error state.
